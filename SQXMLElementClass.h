@@ -48,8 +48,8 @@ _SQUIRRELDEF(XMLElement_IntegerAttribute)
 	printf("[XML] Getting IntegerAttribute: %s...\n", attributeName);
 #endif
 	SQInteger attribute = NULL;
-	attribute = element->IntAttribute(attributeName);
-	if (attribute == NULL)
+	XMLError error = element->QueryIntAttribute(attributeName, &attribute);
+	if (error != XML_SUCCESS)
 	{
 		sq->pushnull(v);
 	}
@@ -78,8 +78,8 @@ _SQUIRRELDEF(XMLElement_FloatAttribute)
 	printf("[XML] Getting FloatAttribute: %s...\n", attributeName);
 #endif
 	SQFloat attribute = NULL;
-	attribute = element->FloatAttribute(attributeName);
-	if (attribute == NULL)
+	XMLError error = element->QueryFloatAttribute(attributeName, &attribute);
+	if (error != XML_SUCCESS)
 	{
 		sq->pushnull(v);
 	}
@@ -107,9 +107,9 @@ _SQUIRRELDEF(XMLElement_BoolAttribute)
 #ifdef _DEBUG
 	printf("[XML] Getting BoolAttribute: %s...\n", attributeName);
 #endif
-	SQBool attribute = NULL;
-	attribute = element->BoolAttribute(attributeName);
-	if (attribute == NULL)
+	bool attribute = NULL;
+	XMLError error = element->QueryBoolAttribute(attributeName, &attribute);
+	if (error != XML_SUCCESS)
 	{
 		sq->pushnull(v);
 	}
